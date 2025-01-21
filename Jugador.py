@@ -1,4 +1,9 @@
 import random
+import Consola as consola
+import tresEnRaya as tresEnRaya
+
+consola = consola.Consola()
+tresEnRaya = tresEnRaya.TresEnRaya()
 
 class Jugador:
     nombre: str
@@ -9,8 +14,8 @@ class Jugador:
     mejorPuntuacion: int
     eventosToGo: int
 
-    def __init__(self, mejorPuntuacion=10000):
-        recordFile = open("record.txt", "r")
+    def __init__(self):
+        recordFile = open("./record.txt", "r")
         self.nombre = "Nombre"
         self.mejorPuntuacion = int(recordFile.read())
         self.metros = 0
@@ -32,9 +37,10 @@ class Jugador:
     # alejarGrande: Aleja 6 eventos el final
     # acercarGrande: Acerca 6 eventos el final
     # terminar: Termina la run
+    # tresEnRaya: Inicia una partida de tres en raya y acerca mucho si pierdes, no hace nada si empatas y aleja mucho si ganas
     # nada: No ocurre nada
 
-    def recompensas(self, tunel, consola, respuesta):
+    def recompensas(self, tunel, respuesta):
         for i in tunel.eventoActual["opciones"][respuesta-1]["efecto"]:
             match i:
                 case "alejarPequeño":
@@ -47,13 +53,27 @@ class Jugador:
                     self.eventosToGo -= 6
                 case "terminar":
                     self.eventosToGo = 0
+                case "tresEnRaya":
+                    consola.linea()
+                    input()
+                    consola.limpiar()
+                    ganador = tresEnRaya.juego(self)
+                    match ganador:
+                        case 0:
+                            self.eventosToGo += 6
+                            i = "alejarGrande"
+                        case 1:
+                            i = "nada"
+                        case 2:
+                            self.eventosToGo -= 6
+                            i = "acercarGrande"
                 case "nada":
                     pass
             consola.recompensa(i)
         
     def actualizarRecord(self):
         if self.metros > self.mejorPuntuacion:
-            recordFile = open("record.txt", "w")
+            recordFile = open("./record.txt", "w")
             recordFile.write(str(self.metros))
             recordFile.close()
             self.mejorPuntuacion = self.metros

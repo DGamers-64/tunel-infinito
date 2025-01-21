@@ -14,6 +14,10 @@ class Consola:
         time.sleep(0.05)
         self.linea()
         time.sleep(0.05)
+        print(" (Para usar una salida de emergencia pulsa q)")
+        time.sleep(0.05)
+        self.linea()
+        time.sleep(0.05)
         print(f" Elige un nombre: ", end="")
         nombre = input()
         jugador.setNombre(nombre)
@@ -39,12 +43,15 @@ class Consola:
         self.linea()
         time.sleep(0.05)
         print(" > ", end="")
-        respuesta = int(input())
+        respuesta = input()
+        if respuesta == "q":
+            return 0
+        respuesta = int(respuesta)
         if respuesta <= 0 or respuesta > len(tunel.eventoActual["opciones"]):
             raise IndexError("La respuesta debe de estar listada")
         self.linea()
         time.sleep(0.05)
-        print(f" {tunel.eventoActual["opciones"][respuesta-1]["dialogoFinal"]}\n")
+        print(f" {tunel.eventoActual["opciones"][respuesta-1]["dialogoFinal"]}")
         time.sleep(0.05)
         return respuesta
     
@@ -107,6 +114,8 @@ class Consola:
                 print(" Err: Valor incorrecto")
             case "indexError":
                 print(" Err: La respuesta debe de estar listada")
+            case "tresEnRayaCoordIncorrecta":
+                print(" Err: Coordenada ocupada")
         time.sleep(0.05)
         self.linea()
         input()

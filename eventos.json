@@ -65,5 +65,25 @@
                 "dialogoFinal": "Uh eso no me gusta mucho"
             }
         ]
+    },
+    {
+        "nombre": "Rayador",
+        "pregunta": "¡Juguemos al Tres en Raya!",
+        "opciones": [
+            {
+                "respuesta": "Está bien",
+                "efecto": [
+                    "tresEnRaya"
+                ],
+                "dialogoFinal": "¡Adelante!"
+            },
+            {
+                "respuesta": "Hmm no",
+                "efecto": [
+                    "nada"
+                ],
+                "dialogoFinal": "Otra vez será..."
+            }
+        ]
     }
 ]
