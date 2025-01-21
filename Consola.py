@@ -10,7 +10,7 @@ class Consola:
     def inicio(self, jugador):
         self.linea()
         time.sleep(0.05)
-        print(f" TÚNEL INFINITO: Record: {jugador.mejorPuntuacion}")
+        print(f" TÚNEL INFINITO > Record: {jugador.mejorPuntuacion}")
         time.sleep(0.05)
         self.linea()
         time.sleep(0.05)
