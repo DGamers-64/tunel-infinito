@@ -1,0 +1,42 @@
+[
+    {
+        "nombre": "Niño",
+        "pregunta": "¿Te has perdido? ¡Yo también!",
+        "opciones": [
+            {
+                "respuesta": "Ehm si...",
+                "efecto": [
+                    "alejarPequeño"
+                ],
+                "dialogoFinal": "Toma esto amigo, ¡te ayudará!"
+            },
+            {
+                "respuesta": "¡Que va!",
+                "efecto": [
+                    "acercarPequeño"
+                ],
+                "dialogoFinal": "Oh... pensaba que si"
+            }
+        ]
+    },
+    {
+        "nombre": "Abuela",
+        "pregunta": "¿Cuánto es 2x4?",
+        "opciones": [
+            {
+                "respuesta": "¡8!",
+                "efecto": [
+                    "alejarPequeño"
+                ],
+                "dialogoFinal": "¡Correcto!"
+            },
+            {
+                "respuesta": "¡5!",
+                "efecto": [
+                    "acercarPequeño"
+                ],
+                "dialogoFinal": "Mmm, bueno..."
+            }
+        ]
+    }
+]
