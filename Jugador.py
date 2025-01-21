@@ -26,13 +26,30 @@ class Jugador:
     def calcularMetros(self):
         self.metros += random.randint(15,70)
 
-    def recompensas(self, tunel, respuesta):
+    # RECOMPENSAS
+    # alejarPequeño: Aleja 3 eventos el final
+    # acercarPequeño: Acerca 3 eventos el final
+    # alejarGrande: Aleja 6 eventos el final
+    # acercarGrande: Acerca 6 eventos el final
+    # terminar: Termina la run
+    # nada: No ocurre nada
+
+    def recompensas(self, tunel, consola, respuesta):
         for i in tunel.eventoActual["opciones"][respuesta-1]["efecto"]:
             match i:
                 case "alejarPequeño":
                     self.eventosToGo += 3
                 case "acercarPequeño":
                     self.eventosToGo -= 3
+                case "alejarGrande":
+                    self.eventosToGo += 6
+                case "acercarGrande":
+                    self.eventosToGo -= 6
+                case "terminar":
+                    self.eventosToGo = 0
+                case "nada":
+                    pass
+            consola.recompensa(i)
         
     def actualizarRecord(self):
         if self.metros > self.mejorPuntuacion:

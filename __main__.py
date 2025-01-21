@@ -15,10 +15,20 @@ def main():
             jugador.calcularMetros()
             jugador.subEventosToGo()
             tunel.generarEvento()
-            consola.cabecera(jugador)
-            respuesta = consola.evento(tunel)
+            respuestaValida = False
+            while respuestaValida == False:
+                try:
+                    consola.cabecera(jugador)
+                    respuesta = consola.evento(tunel)
+                    respuestaValida = True
+                except ValueError:
+                    consola.error("valorIncorrecto")
+                except IndexError:
+                    consola.error("indexError")
+                except:
+                    consola.error("default")
+            jugador.recompensas(tunel, consola, respuesta)
             consola.limpiar()
-            jugador.recompensas(tunel, respuesta)
 
         jugador.actualizarRecord()
 

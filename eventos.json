@@ -38,5 +38,32 @@
                 "dialogoFinal": "Mmm, bueno..."
             }
         ]
+    },
+    {
+        "nombre": "Terminador",
+        "pregunta": "¿Que harías si mañana te\nconviertes en un perro?",
+        "opciones": [
+            {
+                "respuesta": "Ladrar a la gente",
+                "efecto": [
+                    "acercarGrande"
+                ],
+                "dialogoFinal": "Lo normal"
+            },
+            {
+                "respuesta": "Perseguirme la cola",
+                "efecto": [
+                    "alejarGrande"
+                ],
+                "dialogoFinal": "Oh buena idea"
+            },
+            {
+                "respuesta": "Morder a todo el mundo",
+                "efecto": [
+                    "terminar"
+                ],
+                "dialogoFinal": "Uh eso no me gusta mucho"
+            }
+        ]
     }
 ]
