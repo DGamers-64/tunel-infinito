@@ -40,6 +40,7 @@ class Tablero:
             return 3
         
     def dibujarTablero(self, jugadorTunel):
+        consola.limpiar()
         consola.cabecera(jugadorTunel)
         print(" \\ | 1 | 2 | 3")
         print(f" 1 | {self.tablero[0][0]} | {self.tablero[0][1]} | {self.tablero[0][2]}")
@@ -49,17 +50,14 @@ class Tablero:
 
 class Jugador:
     def preguntarCoord(self, tablero):
-        correcto = False
-        while correcto == False:
-            print(" Fila > ", end="")
-            fila = int(input())-1
-            print(" Columna > ", end="")
-            columna = int(input())-1
-            if tablero.tablero[fila][columna] == " ":
-                tablero.tablero[fila][columna] = "X"
-                correcto = True
-                break
-            consola.error("tresEnRayaCoordIncorrecta")
+        print(" Fila > ", end="")
+        fila = int(input())-1
+        print(" Columna > ", end="")
+        columna = int(input())-1
+        if tablero.tablero[fila][columna] == " ":
+            tablero.tablero[fila][columna] = "X"
+        else:
+            raise IndexError()
 
     def generarCoord(self, tablero):
         correcto = False
@@ -78,12 +76,22 @@ class TresEnRaya:
         jugador = Jugador()
         bot = Jugador()
         while ganador == 3:
-            consola.limpiar()
-            tablero.dibujarTablero(jugadorTunel)
-            jugador.preguntarCoord(tablero)
+            coordCorrecta = False
+            while coordCorrecta == False:
+                tablero.dibujarTablero(jugadorTunel)
+                try:
+                    jugador.preguntarCoord(tablero)
+                    coordCorrecta = True
+                except ValueError:
+                    consola.error("tresEnRayaFaltaCoord")
+                except IndexError:            
+                    consola.error("tresEnRayaCoordIncorrecta")
+            ganador = tablero.comprobarTablero()
+            if ganador != 3:
+                break
             bot.generarCoord(tablero)
             ganador = tablero.comprobarTablero()
-        consola.linea()
+        tablero.dibujarTablero(jugadorTunel)
         match ganador:
             case 0:
                 print(" ¡Oh, me has ganado!")

@@ -67,6 +67,21 @@ class Jugador:
                         case 2:
                             self.eventosToGo -= 6
                             i = "acercarGrande"
+                case "randomAlejarAcercar":
+                    resultado = random.randint(0,3)
+                    match resultado:
+                        case 0:
+                            self.eventosToGo -= 6
+                            i = "acercarGrande"
+                        case 1:
+                            self.eventosToGo -= 3
+                            i = "acercarPequeño"
+                        case 2:
+                            self.eventosToGo += 3
+                            i = "alejarPequeño"
+                        case 3:
+                            self.eventosToGo += 6
+                            i = "alejarGrande"
                 case "nada":
                     pass
             consola.recompensa(i)

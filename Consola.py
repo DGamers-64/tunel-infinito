@@ -48,7 +48,7 @@ class Consola:
             return 0
         respuesta = int(respuesta)
         if respuesta <= 0 or respuesta > len(tunel.eventoActual["opciones"]):
-            raise IndexError("La respuesta debe de estar listada")
+            raise IndexError()
         self.linea()
         time.sleep(0.05)
         print(f" {tunel.eventoActual["opciones"][respuesta-1]["dialogoFinal"]}")
@@ -116,6 +116,8 @@ class Consola:
                 print(" Err: La respuesta debe de estar listada")
             case "tresEnRayaCoordIncorrecta":
                 print(" Err: Coordenada ocupada")
+            case "tresEnRayaFaltaCoord":
+                print(" Err: Introduce un número por favor")
         time.sleep(0.05)
         self.linea()
         input()

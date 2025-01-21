@@ -48,7 +48,7 @@
                 "efecto": [
                     "acercarGrande"
                 ],
-                "dialogoFinal": "Lo normal"
+                "dialogoFinal": "Uhm bueno, está bien supongo"
             },
             {
                 "respuesta": "Perseguirme la cola",
@@ -83,6 +83,26 @@
                     "nada"
                 ],
                 "dialogoFinal": "Otra vez será..."
+            }
+        ]
+    },
+    {
+        "nombre": "Botón Misterioso",
+        "pregunta": "¿Quieres pulsar el botón misterioso?",
+        "opciones": [
+            {
+                "respuesta": "¡Si!",
+                "efecto": [
+                    "randomAlejarAcercar"
+                ],
+                "dialogoFinal": "Has pulsado el botón"
+            },
+            {
+                "respuesta": "Hmm... Mejor no",
+                "efecto": [
+                    "nada"
+                ],
+                "dialogoFinal": "Te vas sin pulsar nada"
             }
         ]
     }
