@@ -29,6 +29,11 @@ class Consola:
         time.sleep(0.05)
         self.linea()
 
+    def cabeceraSinDelay(self, jugador):
+        self.linea()
+        print(f" {jugador.metros}m	| Record: {jugador.mejorPuntuacion}m | {jugador.nombre}")
+        self.linea()
+
     def evento(self, tunel):
         time.sleep(0.05)
         print(f" {tunel.eventoActual["nombre"]}")
@@ -98,11 +103,12 @@ class Consola:
                 print(" > Tienes la sensación de haberte\n acercado mucho al final <")
             case "terminar":
                 print(" > Crees que se ha terminado todo <")
+            case "tren":
+                print(" > Has sido llevado en tren <")
             case "nada":
                 print(" > No ocurre nada <")
         time.sleep(0.05)
-        self.linea()
-        input()
+
 
     def error(self, error):
         self.linea()
@@ -121,4 +127,30 @@ class Consola:
         time.sleep(0.05)
         self.linea()
         input()
+        self.limpiar()
+
+    def transicion(self, jugador):
+        self.cabeceraSinDelay(jugador)
+        print("	 O")
+        print("	/|\\")
+        print("	 |")
+        print("	/ \\")
+        self.linea()
+        time.sleep(0.8)
+        self.limpiar()
+        self.cabeceraSinDelay(jugador)
+        print("		 O")
+        print("		/|\\")
+        print("		 |")
+        print("		/ \\")
+        self.linea()
+        time.sleep(0.8)
+        self.limpiar()
+        self.cabeceraSinDelay(jugador)
+        print("			 O")
+        print("			/|\\")
+        print("			 |")
+        print("			/ \\")
+        self.linea()
+        time.sleep(0.8)
         self.limpiar()

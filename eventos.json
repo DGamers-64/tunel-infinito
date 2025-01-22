@@ -73,7 +73,7 @@
             {
                 "respuesta": "Está bien",
                 "efecto": [
-                    "tresEnRaya"
+                    "tresEnRayaGrande"
                 ],
                 "dialogoFinal": "¡Adelante!"
             },
@@ -103,6 +103,26 @@
                     "nada"
                 ],
                 "dialogoFinal": "Te vas sin pulsar nada"
+            }
+        ]
+    },
+    {
+        "nombre": "Tren",
+        "pregunta": "¡Hola! Estamos buscando el infinito.\n¿Nos acompañas un rato?",
+        "opciones": [
+            {
+                "respuesta": "¡Por supuesto!",
+                "efecto": [
+                    "tren"
+                ],
+                "dialogoFinal": "Nos vemos amigo"
+            },
+            {
+                "respuesta": "Paso",
+                "efecto": [
+                    "nada"
+                ],
+                "dialogoFinal": "Nos vemos otro día"
             }
         ]
     }

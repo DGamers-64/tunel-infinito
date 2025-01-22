@@ -15,6 +15,7 @@ def main():
         
         salidaEmergencia = False
         while jugador.eventosToGo > 0:
+            consola.transicion(jugador)
             jugador.calcularMetros()
             jugador.subEventosToGo()
             tunel.generarEvento()

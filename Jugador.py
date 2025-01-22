@@ -25,6 +25,12 @@ class Jugador:
     def setNombre(self, nombre):
         self.nombre = nombre
 
+    def setMetros(self, metros):
+        if self.metros + metros < 0:
+            self.metros = 0
+            return
+        self.metros += metros
+
     def subEventosToGo(self,num=1):
         self.eventosToGo -= num
 
@@ -37,7 +43,7 @@ class Jugador:
     # alejarGrande: Aleja 6 eventos el final
     # acercarGrande: Acerca 6 eventos el final
     # terminar: Termina la run
-    # tresEnRaya: Inicia una partida de tres en raya y acerca mucho si pierdes, no hace nada si empatas y aleja mucho si ganas
+    # tresEnRayaGrande: Inicia una partida de tres en raya y acerca mucho si pierdes, no hace nada si empatas y aleja mucho si ganas
     # nada: No ocurre nada
 
     def recompensas(self, tunel, respuesta):
@@ -53,7 +59,7 @@ class Jugador:
                     self.eventosToGo -= 6
                 case "terminar":
                     self.eventosToGo = 0
-                case "tresEnRaya":
+                case "tresEnRayaGrande":
                     consola.linea()
                     input()
                     consola.limpiar()
@@ -82,9 +88,22 @@ class Jugador:
                         case 3:
                             self.eventosToGo += 6
                             i = "alejarGrande"
+                case "tren":
+                    resultado = random.randint(0,3)
+                    match resultado:
+                        case 0:
+                            self.setMetros(-1000)
+                        case 1:
+                            self.setMetros(-500)
+                        case 2:
+                            self.setMetros(500)
+                        case 3:
+                            self.setMetros(1000)
                 case "nada":
                     pass
             consola.recompensa(i)
+        consola.linea()
+        input()
         
     def actualizarRecord(self):
         if self.metros > self.mejorPuntuacion:
