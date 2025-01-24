@@ -1,6 +1,7 @@
 import random
 import Consola as consola
 import tresEnRaya as tresEnRaya
+import Buscaminas as buscaminas
 
 consola = consola.Consola()
 tresEnRaya = tresEnRaya.TresEnRaya()
@@ -99,6 +100,13 @@ class Jugador:
                             self.setMetros(500)
                         case 3:
                             self.setMetros(1000)
+                case "buscaminas":
+                    if buscaminas.main(6, 6, 7):
+                        self.setMetros(1000)
+                        i = "alejarGrande"
+                    else:
+                        self.setMetros(-1000)
+                        i = "acercarGrande"
                 case "nada":
                     pass
             consola.recompensa(i)

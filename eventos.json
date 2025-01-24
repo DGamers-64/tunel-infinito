@@ -125,5 +125,25 @@
                 "dialogoFinal": "Nos vemos otro día"
             }
         ]
+    },
+    {
+        "nombre": "Bosca Mina",
+        "pregunta": "¿Eyy quieres jugar al buscaminas?",
+        "opciones": [
+            {
+                "respuesta": "¡Vale!",
+                "efecto": [
+                    "buscaminas"
+                ],
+                "dialogoFinal": "¡Hasta otra!"
+            },
+            {
+                "respuesta": "No gracias",
+                "efecto": [
+                    "nada"
+                ],
+                "dialogoFinal": "Está bien, ¡hasta luego!"
+            }
+        ]
     }
 ]
