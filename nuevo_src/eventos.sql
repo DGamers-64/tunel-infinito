@@ -26,6 +26,7 @@ CREATE TABLE opcion_evento (
 CREATE TABLE efecto_opcion (
     id INT AUTO_INCREMENT PRIMARY KEY,
     id_opcion INT,
+    orden INT,
     efecto VARCHAR(40),
     param1 VARCHAR(40),
     param2 VARCHAR(40),
@@ -46,8 +47,10 @@ INSERT INTO opcion_evento (id_evento, respuesta) VALUES
     (2, "¡8!"),
     (2, "¡5!");
 
-INSERT INTO efecto_opcion (id_opcion, efecto, param1, param2, param3) VALUES
-    (1, "alejar", 3, NULL, NULL),
-    (2, "acercar", 3, NULL, NULL),
-    (3, "alejar", 6, NULL, NULL),
-    (4, "acercar", 6, NULL, NULL);
+INSERT INTO efecto_opcion (id_opcion, orden, efecto, param1, param2, param3) VALUES
+    (1, 1, "alejar", "3", NULL, NULL),
+    (1, 2, "dialogo", "¡Jope!", "Cachis na mar!!", NULL),
+    (2, 1, "acercar", "3", NULL, NULL),
+    (2, 2, "dialogo", "¡ADIOS JIJIJIJA!", NULL, NULL),
+    (3, 1, "alejar", "6", NULL, NULL),
+    (4, 1, "acercar", "6", NULL, NULL);

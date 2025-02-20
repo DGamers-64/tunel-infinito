@@ -56,11 +56,11 @@ class Modelo:
             if evento["rango_min"] <= metros and metros <= evento["rango_max"]:
                 completado = True
 
-        cursor.execute("SELECT * FROM opcion_evento WHERE id_evento = %s", (id, ))
+        cursor.execute("SELECT * FROM opcion_evento WHERE id_evento = %s", (evento["id"], ))
         opciones = cursor.fetchall()
 
         for i in opciones:
-            cursor.execute("SELECT * FROM efecto_opcion WHERE id_opcion = %s", (i["id"], ))
+            cursor.execute("SELECT * FROM efecto_opcion WHERE id_opcion = %s ORDER BY orden ASC", (i["id"], ))
             efectos = cursor.fetchall()
             i["efectos"] = efectos
 

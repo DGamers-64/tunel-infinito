@@ -26,6 +26,7 @@ class Vista:
         correcto = False
         while not correcto:
             Vista.print_linea()
+            time.sleep(0.05)
             nombre = input(" Escribe tu nombre > ")
             time.sleep(0.05)
             if len(nombre) > 20:
@@ -45,7 +46,6 @@ class Vista:
     
     def print_linea():
         print("-----------------------------------------")
-        pass
 
     def print_menu_bienvenida():
         Vista.limpiar_consola()
@@ -82,13 +82,41 @@ class Vista:
         time.sleep(0.05)
         Vista.print_linea()
         time.sleep(0.05)
-        pass
 
     def print_animacion():
         pass
 
     def print_evento(evento: dict) -> None:
-        pass
+        print(f" {evento["nombre"]}")
+        time.sleep(0.05)
+        print(f"  {evento["pregunta"]}")
+        time.sleep(0.05)
+        Vista.print_linea()
+        time.sleep(0.05)
+        for i in range(len(evento["opciones"])):
+            print(f" {i+1}. {evento["opciones"][i]["respuesta"]}")
+            time.sleep(0.05)
+        respuesta = Vista.input_max_numero(len(evento["opciones"]))
+        time.sleep(0.05)
+        return respuesta
+    
+    def print_dialogo(dialogo):
+        Vista.print_linea()
+        time.sleep(0.05)
+        print(f" {dialogo[0]}")
+        time.sleep(0.05)
+        if len(dialogo) > 1:
+            print(f" {dialogo[1]}")
+            time.sleep(0.05)
+        if len(dialogo) > 2:
+            print(f" {dialogo[2]}")
+            time.sleep(0.05)
+        Vista.print_linea()
+
+    def print_texto(texto):
+        print(f" {texto}")
+        time.sleep(0.05)
+        Vista.print_linea()
 
     def print_efecto():
         pass
