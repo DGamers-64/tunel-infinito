@@ -22,6 +22,21 @@ class Vista:
                 print(" Valor incorrecto")
         return respuesta
 
+    def input_nombre():
+        correcto = False
+        while not correcto:
+            Vista.print_linea()
+            nombre = input(" Escribe tu nombre > ")
+            time.sleep(0.05)
+            if len(nombre) > 20:
+                Vista.print_linea()
+                time.sleep(0.05)
+                print(" Nombre demasiado largo")
+                time.sleep(0.05)
+                continue
+            correcto = True
+        return nombre
+
     def limpiar_consola():
         if os.name == "nt":
             os.system("cls")
@@ -80,7 +95,3 @@ class Vista:
 
     def print_pantalla_fin():
         pass
-
-    def input_nombre():
-        nombre = input(" Escribe tu nombre > ")
-        return nombre
