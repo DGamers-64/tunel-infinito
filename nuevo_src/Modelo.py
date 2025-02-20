@@ -1,11 +1,11 @@
-import mysql.connector
+import mysql.connector, random
 
 class Modelo:
     def abrir_conexion():
         conexion = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="",
+            password="Abc123.",
             database="tunel_infinito"
         )
 
@@ -37,16 +37,34 @@ class Modelo:
         Modelo.cerrar_conexion(cursor, conexion)
 
     def update_usuario(nombre: str, puntuacion: int) -> None:
-        pass
+        cursor, conexion = Modelo.abrir_conexion()
+        cursor.execute("UPDATE usuario SET puntuacion = %s WHERE nombre = %s", (puntuacion, nombre, ))
+        conexion.commit()
+        Modelo.cerrar_conexion(cursor, conexion)
 
     # Obtener diccionario con TODA la información de un evento aleatorio.
     def get_random_evento(metros: int) -> dict:
         cursor, conexion = Modelo.abrir_conexion()
         cursor.execute("SELECT * FROM evento")
 
-        resultados = cursor.fetchall()
+        eventos = cursor.fetchall()
 
-        for fila in resultados:
-            print(fila)
+        completado = False
+        while not completado:
+            id = random.randint(0,len(eventos)-1)
+            evento = eventos[id]
+            if evento["rango_min"] <= metros and metros <= evento["rango_max"]:
+                completado = True
+
+        cursor.execute("SELECT * FROM opcion_evento WHERE id_evento = %s", (id, ))
+        opciones = cursor.fetchall()
+
+        for i in opciones:
+            cursor.execute("SELECT * FROM efecto_opcion WHERE id_opcion = %s", (i["id"], ))
+            efectos = cursor.fetchall()
+            i["efectos"] = efectos
+
+        evento["opciones"] = opciones
 
         Modelo.cerrar_conexion(cursor, conexion)
+        return evento

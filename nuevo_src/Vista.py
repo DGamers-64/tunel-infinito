@@ -87,7 +87,7 @@ class Vista:
     def print_animacion():
         pass
 
-    def print_evento():
+    def print_evento(evento: dict) -> None:
         pass
 
     def print_efecto():
