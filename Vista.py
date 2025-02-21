@@ -101,7 +101,6 @@ class Vista:
         return respuesta
     
     def print_dialogo(dialogo):
-        Vista.print_linea()
         time.sleep(0.05)
         print(f" {dialogo[0]}")
         time.sleep(0.05)
@@ -111,15 +110,36 @@ class Vista:
         if len(dialogo) > 2:
             print(f" {dialogo[2]}")
             time.sleep(0.05)
-        Vista.print_linea()
 
     def print_texto(texto):
-        print(f" {texto}")
+        print(texto)
+        time.sleep(0.05)
+
+    def print_pantalla_fin(usuario, metros, nuevo_record):
+        print("┌──┐ ┌──┐ ┌┐   ┌┐ ┌─┐  ┌──┐")
+        time.sleep(0.05)
+        print("│ ┌┘ │┌┐│ ││   ││ │ └┐ │┌┐│")
+        time.sleep(0.05)
+        print("│ └┐ │└┘│ ││   ││ │┌┐│ │└┘│")
+        time.sleep(0.05)
+        print("└┐ │ │┌┐│ ││   ││ │└┘│ │┌┐│")
+        time.sleep(0.05)
+        print("┌┘ │ ││││ │└─┐ ││ │ ┌┘ ││││")
+        time.sleep(0.05)
+        print("└──┘ └┘└┘ └──┘ └┘ └─┘  └┘└┘")
         time.sleep(0.05)
         Vista.print_linea()
-
-    def print_efecto():
-        pass
-
-    def print_pantalla_fin():
-        pass
+        time.sleep(0.05)
+        print(f" {usuario["nombre"]} has salido en el metro nº {metros}")
+        time.sleep(0.05)
+        if nuevo_record:
+            print(f" ¡NUEVO RÉCORD! Tu récord actual es {usuario["puntuacion"]}")
+        else:
+            print(f" Tu récord actual es {usuario["puntuacion"]}")
+        time.sleep(0.05)
+        Vista.print_linea()
+        time.sleep(0.05)
+        print(" Nos volveremos a ver...")
+        time.sleep(0.05)
+        Vista.print_linea()
+        time.sleep(0.05)

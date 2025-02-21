@@ -1,11 +1,14 @@
-import mysql.connector, random
+import mysql.connector, random, os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class Modelo:
     def abrir_conexion():
         conexion = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="Abc123.",
+            host=os.getenv("mysql-host"),
+            user=os.getenv("mysql-user"),
+            password=os.getenv("mysql-password"),
             database="tunel_infinito"
         )
 

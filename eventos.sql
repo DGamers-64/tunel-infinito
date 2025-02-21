@@ -28,14 +28,16 @@ CREATE TABLE efecto_opcion (
     id_opcion INT,
     orden INT,
     efecto VARCHAR(40),
-    param1 VARCHAR(40),
-    param2 VARCHAR(40),
-    param3 VARCHAR(40),
     FOREIGN KEY (id_opcion) REFERENCES opcion_evento(id)
 );
 
-INSERT INTO usuario (nombre, puntuacion) VALUES
-    ("Daniel", 100);
+CREATE TABLE params_efecto (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_efecto INT,
+    orden INT,
+    parametro VARCHAR(40),
+    FOREIGN KEY (id_efecto) REFERENCES efecto_opcion(id)
+)
 
 INSERT INTO evento (nombre, pregunta, rango_min, rango_max) VALUES
     ("Niño", "¿Te has perdido? ¡Yo también!", 0, 99999),
@@ -49,7 +51,6 @@ INSERT INTO opcion_evento (id_evento, respuesta) VALUES
 
 INSERT INTO efecto_opcion (id_opcion, orden, efecto, param1, param2, param3) VALUES
     (1, 1, "alejar", "3", NULL, NULL),
-    (1, 2, "dialogo", "¡Jope!", "Cachis na mar!!", NULL),
     (2, 1, "acercar", "3", NULL, NULL),
     (2, 2, "dialogo", "¡ADIOS JIJIJIJA!", NULL, NULL),
     (3, 1, "alejar", "6", NULL, NULL),

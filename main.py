@@ -24,5 +24,15 @@ while tunel.salida():
     Vista.print_cabecera(usuario["nombre"], tunel.metros, usuario["puntuacion"])
     opcion_escogida = Vista.print_evento(evento)
     for i in evento["opciones"][opcion_escogida-1]["efectos"]:
-        getattr(efecto, i["efecto"])(tunel, i["param1"], i["param2"], i["param3"])
+        Vista.print_linea()
+        getattr(efecto, i["efecto"])(tunel, usuario, i["param1"], i["param2"], i["param3"])
+    Vista.print_linea()
     input()
+    tunel.avanzar_tunel()
+Vista.print_cabecera(usuario["nombre"], tunel.metros, usuario["puntuacion"])
+nuevo_record = False
+if usuario["puntuacion"] < tunel.metros:
+    Modelo.update_usuario(usuario["nombre"], tunel.metros)
+    nuevo_record = True
+usuario = Modelo.get_usuario(usuario["nombre"])
+Vista.print_pantalla_fin(usuario, tunel.metros, nuevo_record)
