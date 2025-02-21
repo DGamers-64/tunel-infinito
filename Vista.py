@@ -99,17 +99,6 @@ class Vista:
         respuesta = Vista.input_max_numero(len(evento["opciones"]))
         time.sleep(0.05)
         return respuesta
-    
-    def print_dialogo(dialogo):
-        time.sleep(0.05)
-        print(f" {dialogo[0]}")
-        time.sleep(0.05)
-        if len(dialogo) > 1:
-            print(f" {dialogo[1]}")
-            time.sleep(0.05)
-        if len(dialogo) > 2:
-            print(f" {dialogo[2]}")
-            time.sleep(0.05)
 
     def print_texto(texto):
         print(texto)

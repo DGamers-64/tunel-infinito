@@ -48,24 +48,22 @@ class Modelo:
     # Obtener diccionario con TODA la información de un evento aleatorio.
     def get_random_evento(metros: int) -> dict:
         cursor, conexion = Modelo.abrir_conexion()
-        cursor.execute("SELECT * FROM evento")
+        cursor.execute("SELECT id, nombre, pregunta, rango_min, rango_max FROM evento WHERE %s BETWEEN rango_min AND rango_max", (metros, ))
 
         eventos = cursor.fetchall()
+        evento = eventos[random.randint(0,len(eventos)-1)]
 
-        completado = False
-        while not completado:
-            id = random.randint(0,len(eventos)-1)
-            evento = eventos[id]
-            if evento["rango_min"] <= metros and metros <= evento["rango_max"]:
-                completado = True
-
-        cursor.execute("SELECT * FROM opcion_evento WHERE id_evento = %s", (evento["id"], ))
+        cursor.execute("SELECT id, respuesta FROM opcion_evento WHERE id_evento = %s", (evento["id"], ))
         opciones = cursor.fetchall()
 
         for i in opciones:
-            cursor.execute("SELECT * FROM efecto_opcion WHERE id_opcion = %s ORDER BY orden ASC", (i["id"], ))
+            cursor.execute("SELECT id, efecto FROM efecto_opcion WHERE id_opcion = %s ORDER BY orden ASC", (i["id"], ))
             efectos = cursor.fetchall()
             i["efectos"] = efectos
+            for j in efectos:
+                cursor.execute("SELECT parametro FROM params_efecto WHERE id_efecto = %s", (j["id"], ))
+                params = cursor.fetchall()
+                j["params"] = params
 
         evento["opciones"] = opciones
 

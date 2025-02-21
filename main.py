@@ -25,7 +25,7 @@ while tunel.salida():
     opcion_escogida = Vista.print_evento(evento)
     for i in evento["opciones"][opcion_escogida-1]["efectos"]:
         Vista.print_linea()
-        getattr(efecto, i["efecto"])(tunel, usuario, i["param1"], i["param2"], i["param3"])
+        getattr(efecto, i["efecto"])(tunel, usuario, i["params"])
     Vista.print_linea()
     input()
     tunel.avanzar_tunel()
